@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Siya 💖</title>
+
+<style>
+
+/* ===== ROMANTIC BACKGROUND ===== */
+/* ===== SOFT WHITE PINK ROMANTIC BACKGROUND ===== */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #5a003c;
+
+    /* Soft white to pink gradient */
+    background: linear-gradient(
+        135deg,
+        #fff0f5,   /* soft white-pink */
+        #ffc1d3,   /* light pink */
+        #ff6f91    /* romantic pink */
+    );
+}
+
+/* Soft floating background hearts */
+.bg-heart {
+    position: fixed;
+    font-size: 20px;
+    opacity: 0.15;
+    animation: bgFloat 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes bgFloat {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+/* ===== SCENES ===== */
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== TEXT ===== */
+h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 10px rgba(255, 0, 120, 0.4);
+}
+
+h2 {
+    font-weight: 300;
+    max-width: 650px;
+    line-height: 1.7;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    margin: 20px;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff4f81, #ff1a75);
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background: transparent;
+    border: 2px solid #840739;
+    color: #ff1a75;
+    position: relative;
+}
+
+/* ===== FUNNY TEXT ===== */
+#funnyText {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    background: rgba(255, 3, 3, 0.6);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #090307;
+    border: 1px solid cadetblue;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 9999;
+}
+
+
+/* ===== HEARTS ===== */
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== SCENE 1 INTRO ===== -->
+<div class="scene active" id="scene1">
+    <h1 id="typing"></h1>
+</div>
+
+<!-- ===== SCENE 2 QUESTION ===== -->
+<div class="scene" id="scene2">
+    <h1 id="loveName"></h1>
+
+    <h2>
+        Every heartbeat whispers your name…<br>
+        Every future I imagine has you in it.<br><br>
+        I don’t just want today with you —<br>
+        I want every tomorrow.<br><br>
+        Will you walk that forever with me? 💍
+    </h2>
+
+    <div style="margin-top:30px;">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 💔</button>
+    </div>
+
+    <p id="funnyText"></p>
+</div>
+
+<!-- ===== SCENE 3 FINAL ===== -->
+<div class="scene" id="scene3">
+    <h1 style="margin-bottom:20px;">Siya baby 💖</h1>
+
+    <h2 style="max-width:650px; line-height:1.8; font-weight:300;">
+        You didn’t just say yes…<br>
+        You made my world brighter.<br><br>
+
+        From this moment on,<br>
+        every smile, every dream,<br>
+        every tomorrow —<br>
+        I want it with you.<br><br>
+
+        I love you more than words can ever explain. 💍✨
+    </h2>
+</div>
+
+<script>
+
+/* ===== TYPEWRITER INTRO ===== */
+const introText = "Hi Siya ❤️ I made something special for you...";
+let i = 0;
+
+function typeWriter() {
+    if (i < introText.length) {
+        document.getElementById("typing").innerHTML += introText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 60);
+    } else {
+        setTimeout(() => {
+            document.getElementById("scene1").classList.remove("active");
+            document.getElementById("scene2").classList.add("active");
+        }, 1200);
+    }
+}
+typeWriter();
+
+/* ===== ROTATING NAME ===== */
+const names = ["Siya ❤️", "Pumpkin 💕", "Siya baby 💖"];
+let nameIndex = 0;
+const loveName = document.getElementById("loveName");
+
+function rotateName() {
+    loveName.innerText = names[nameIndex % names.length];
+    nameIndex++;
+}
+
+rotateName();
+setInterval(rotateName, 3000);
+
+/* ===== BUTTON LOGIC ===== */
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const funnyText = document.getElementById("funnyText");
+
+let yesSize = 20;
+
+let messageIndex = 0;
+
+
+const funnyMessages = [
+
+"Siya… you really pressing No? 😏",
+"Pumpkin, that button must be broken.",
+"Siya baby, my heart already said yes ❤️",
+"You can press No, but destiny disagrees.",
+"Even the stars are judging you right now ✨",
+"Stop being dramatic and press Yes 😌",
+"My future wife acting shy huh?",
+"I’ll wait… but not forever 😭",
+"Okay that’s cute… now press Yes.",
+"You’re enjoying this too much 😂",
+
+"Are you testing my patience?",
+"You think No will save you?",
+"I already told everyone you're mine.",
+"That No button feels suspicious.",
+"Your finger slipped right? RIGHT?",
+"I refuse to accept that answer.",
+"Pumpkin, behave yourself 😏",
+"My heart doesn’t recognize No.",
+"You’re smiling while pressing No, I know it.",
+"Siya baby stop teasing me 💖",
+
+"This is emotional damage.",
+"I practiced my proposal for this.",
+"Are you playing hard to get?",
+"Plot twist: you actually love me.",
+"The Yes button looks prettier btw.",
+"I’ll grow the Yes button forever.",
+"You can’t escape destiny 😌",
+"Universe says press Yes.",
+"You’re too cute to say No.",
+"Fine… but I’m not giving up.",
+
+"Siyaaaa 😭 don’t do this.",
+"Pumpkin I’m serious now.",
+"You’re enjoying this aren’t you?",
+"I’m adding 10 more hearts for that.",
+"Even Google says we’re perfect.",
+"You already belong to me.",
+"This is illegal behavior.",
+"You owe me a Yes.",
+"My mom already likes you.",
+"Our future kids are confused now.",
+
+"Stop pressing No and press my hand instead.",
+"Your No has no power here.",
+"I believe in us more than that button.",
+"Don’t test my romantic coding skills.",
+"I made this whole website for you 😭",
+"Press Yes before I get dramatic.",
+"You know you want to.",
+"You can’t outrun love.",
+"The Yes button misses you.",
+"Pumpkin don’t be stubborn.",
+
+"You’re my favorite notification.",
+"You’re my always.",
+"You’re my best decision.",
+"You’re my lucky charm.",
+"You’re my home.",
+"You’re my forever.",
+"You’re my peace.",
+"You’re my chaos.",
+"You’re my heart.",
+"You’re my future.",
+
+"You really thought No would work?",
+"I see you smiling right now.",
+"You love me, admit it.",
+"I dare you to press Yes.",
+"Your destiny loading… 99% ❤️",
+"That No button looks nervous.",
+"I programmed Yes to win.",
+"Romance level increasing.",
+"You can’t break my heart like that.",
+"That’s not very Siya baby of you.",
+
+"I’ll write another 100 lines if needed.",
+"You can press No but I’ll press love.",
+"Your stubbornness is adorable.",
+"I’m not accepting defeat.",
+"You’re too precious to say No.",
+"You’re my sunshine.",
+"You’re my moonlight.",
+"You’re my heartbeat.",
+"You’re my favorite hello.",
+"You’re my sweetest dream.",
+
+"Even Cupid is tired now.",
+"Stop testing the system.",
+"This is not the answer key.",
+"You belong beside me.",
+"Forever is waiting.",
+"I’m serious… press Yes.",
+"You know it’s meant to be.",
+"I’m already yours.",
+"You can’t deny chemistry.",
+"Fine… last chance before I kiss you 😌",
+
+"Pumpkin don’t break my code.",
+"Siya baby don’t break my heart.",
+"I promise unlimited hugs.",
+"I promise late night talks.",
+"I promise random surprises.",
+"I promise always choosing you.",
+"I promise loving you loudly.",
+"I promise loving you quietly.",
+"I promise loving you forever.",
+"Okay okay… but you’re still mine 💞"
+
+];let moveCount = 0;
+let maxMoves = 4;   // total moves allowed
+
+function moveNoButton(delay = 0) {
+
+    if (moveCount >= maxMoves) return;
+
+    setTimeout(() => {
+
+        const buttonWidth = noBtn.offsetWidth;
+        const buttonHeight = noBtn.offsetHeight;
+
+        const maxX = window.innerWidth - buttonWidth;
+        const maxY = window.innerHeight - buttonHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.position = "fixed";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+
+        moveCount++;
+
+    }, delay);
+}
+
+noBtn.addEventListener("mouseenter", () => {
+
+    if (moveCount < 3) {
+        moveNoButton(); // instant move
+    } 
+    else if (moveCount === 3) {
+        moveNoButton(1000); // 1 sec delay on 4th move
+    }
+});
+
+/* Click reset logic */
+noBtn.addEventListener("click", () => {
+
+    funnyText.innerText = funnyMessages[messageIndex % funnyMessages.length];
+    funnyText.style.opacity = "1";
+    messageIndex++;
+
+    yesSize += 8;
+    yesBtn.style.fontSize = yesSize + "px";
+
+    moveCount = 0; // reset cycle
+
+    setTimeout(() => {
+        funnyText.style.opacity = "0";
+    }, 2000);
+});
+
+
+/* ===== YES CLICK ===== */
+yesBtn.addEventListener("click", () => {
+    document.getElementById("scene2").classList.remove("active");
+    document.getElementById("scene3").classList.add("active");
+    heartRain();
+});
+
+/* ===== FLOATING HEARTS ===== */
+function heartRain() {
+    const interval = setInterval(() => {
+
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-30px";
+        heart.style.fontSize = (Math.random() * 25 + 15) + "px";
+        heart.style.animation = "floatUp 6s ease-in forwards";
+        heart.style.pointerEvents = "none";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+
+    }, 250);
+
+    setTimeout(() => clearInterval(interval), 8000);
+}
+/* Soft background floating hearts */
+for (let i = 0; i < 15; i++) {
+
+    const bgHeart = document.createElement("div");
+    bgHeart.className = "bg-heart";
+    bgHeart.innerHTML = "❤️";
+    bgHeart.style.left = Math.random() * 100 + "vw";
+    bgHeart.style.fontSize = (Math.random() * 30 + 20) + "px";
+    bgHeart.style.animationDuration = (Math.random() * 15 + 15) + "s";
+
+    document.body.appendChild(bgHeart);
+}
+
+</script>
+
+</body>
+</html>
